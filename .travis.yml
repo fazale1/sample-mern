@@ -6,6 +6,8 @@ services:
 
 before_install:
   - docker build -t fazale/docker-react -f ./sample/dockerfile ./sample
+  - docker build -t fazale/docker-node -f ./backend/dockerfile ./backend
+
 
 
 
@@ -14,6 +16,8 @@ before_install:
 
 after_success:
   - docker build -t fazale/single-client ./sample
+
+  - docker build -t fazale/single-node ./backend
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
